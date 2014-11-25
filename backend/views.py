@@ -24,7 +24,9 @@ def gift(request):
 
 		items = [item['gift'] for item in StoreItem.objects.filter(community=community).values('gift')]
 		gifts = list(Gift.objects.filter(id__in=items).values())
-		return HttpResponse(json.dumps(gifts), content_type="application/json")
+		resp['status'] = 'ok'
+		resp['gifts'] = gifts
+		return HttpResponse(json.dumps(resp), content_type="application/json")
 
 	resp['error'] = 'unsupported_method'
 	return HttpResponse(json.dumps(resp), content_type="application/json")
