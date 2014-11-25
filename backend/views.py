@@ -14,8 +14,8 @@ def community(request):
 
 def gift(request):
 	resp = {}
-	if request.method == 'GET':
-		community = request.GET.get('community','')
+	if request.method == 'POST':
+		community = request.POST.get('community','')
 		try:
 			community = Community.objects.get(id=community)
 		except Exception, e:
@@ -32,12 +32,12 @@ def gift(request):
 
 def order(request):
 	resp = {}
-	if request.method == 'GET':
-		community = request.GET.get('community', '')
-		username = request.GET.get('username', '')
-		mobile = request.GET.get('mobile', '')
-		count = request.GET.get('count', '')
-		gifts = request.GET.get('gifts', '')
+	if request.method == 'POST':
+		community = request.POST.get('community', '')
+		username = request.POST.get('username', '')
+		mobile = request.POST.get('mobile', '')
+		count = request.POST.get('count', '')
+		gifts = request.POST.get('gifts', '')
 
 		try:
 			community = Community.objects.get(id=community)
